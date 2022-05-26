@@ -1,0 +1,20 @@
+header, footer {
+    background: transparent;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+
+    .logo {
+        height: 10rem;
+
+        img {
+            height: 100%;
+        }
+    }
+}
+
+main {
+    min-height: 80vh;
+}
