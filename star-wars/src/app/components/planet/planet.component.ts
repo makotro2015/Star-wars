@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
-
-import { HttpService } from 'src/app/services/http.service'
+import { HttpService } from 'src/app/services/http.service';
 
 @Component({
   selector: 'app-planet',
@@ -10,8 +9,8 @@ import { HttpService } from 'src/app/services/http.service'
 })
 export class PlanetComponent implements OnInit, OnDestroy {
 
-  public planetData: {} = {};
-  public planetDataRender: any[] = [];
+  public planetData = {};
+  public planetKeys = [];
 
   constructor(private http: HttpService) {
   }
@@ -22,10 +21,10 @@ export class PlanetComponent implements OnInit, OnDestroy {
     this.http
       .getData('planets/1/')
       .pipe(takeUntil(this.destroy$))
-      .subscribe((resp: any) => {
+      .subscribe((resp: {}) => {
+        console.log(resp);
         this.planetData = { ...resp };
-        this.planetDataRender = this.getRenderPlanetData(this.planetData);
-        console.log(this.planetDataRender);
+        this.planetKeys = this.getPlanetKeys(this.planetData);
       });
   }
 
@@ -34,9 +33,9 @@ export class PlanetComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
-  public getRenderPlanetData(obj: any): String[] {
-    const arrayData: String[] = [];
-    Object.keys(obj).map(key => arrayData.push(`${key}: ${obj[key]}`))
-    return arrayData;
+  private getPlanetKeys(obj: {}): [] {
+    const arrayKeys: any = [];
+    Object.keys(obj).map(key => arrayKeys.push(key));
+    return arrayKeys;
   }
 }

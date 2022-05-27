@@ -10,8 +10,8 @@ import { HttpService } from 'src/app/services/http.service'
 })
 export class PlanetsComponent implements OnInit, OnDestroy {
 
-  public planetsData: any[] = [];
-  public keysPlanet: any[] = [];
+  public planetsData:any = [];
+  public arrayPlanetsKeys = [];
 
   constructor(private http: HttpService) {
   }
@@ -24,11 +24,22 @@ export class PlanetsComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroy$))
       .subscribe((resp: any) => {
         this.planetsData = [...resp.results];
+        this.arrayPlanetsKeys = this.getPlanetsKeys(this.planetsData);
       });
   }
 
   ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();
+  }
+
+  private getPlanetsKeys(arr: Object[]): [] {
+    let arrayKeys: any = [];
+    arr.forEach(obj => {
+      const objKeys: any = [];
+      Object.keys(obj).forEach(key => objKeys.push(key));
+      arrayKeys.push(objKeys);
+    });
+    return arrayKeys;
   }
 }
