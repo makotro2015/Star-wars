@@ -6,12 +6,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PlanetsComponent } from './components/planets/planets.component';
+import { PlanetComponent } from './components/planet/planet.component';
 import { HttpService } from './services/http.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PlanetsComponent
+    PlanetsComponent,
+    PlanetComponent,
   ],
   imports: [
     BrowserModule,

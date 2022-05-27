@@ -10,7 +10,7 @@ import { HttpService } from 'src/app/services/http.service'
 })
 export class PlanetsComponent implements OnInit, OnDestroy {
 
-  public planets: any[] = [];
+  public planetsData: any[] = [];
   public keysPlanet: any[] = [];
 
   constructor(private http: HttpService) {
@@ -23,8 +23,7 @@ export class PlanetsComponent implements OnInit, OnDestroy {
       .getData('planets/')
       .pipe(takeUntil(this.destroy$))
       .subscribe((resp: any) => {
-        this.planets = [...resp.results];
-        console.log(...resp.results);
+        this.planetsData = [...resp.results];
       });
   }
 
@@ -32,8 +31,4 @@ export class PlanetsComponent implements OnInit, OnDestroy {
     this.destroy$.next();
     this.destroy$.complete();
   }
-
-  // public getKeysObj (obj: {}): String[] {
-  //   return Object.keys(obj).map(key => `<p>${key}</p>`)
-  //   }
 }

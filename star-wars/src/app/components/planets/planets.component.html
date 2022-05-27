@@ -1,31 +1,35 @@
 <section class="planets">
-    <div class="planet" *ngFor="let planet of planets">
-    <h3>{{planet.name}}</h3>
-    <p>
-        Climate: {{planet.climate}}
-        <br/>
-        Rotation period: {{planet.rotation_period}}
-        <br/>
-        Orbital period: {{planet.orbital_period}}
-        <br/>
-        Diameter: {{planet.diameter}}
-        <br/>
-        Created: {{planet.created}}
-        <br/>
-        Edited: {{planet.edited}}
-        <br/>
-        Films: {{planet.films}}
-        <br/>
-        Gravity: {{planet.gravity}}
-        <br/>
-        Orbital period: {{planet.orbital_period}}
-        <br/>
-        Population: {{planet.population}}
-        <br/>
-        Surface water: {{planet.surface_water}}
-        <br/>
-        Terrain: {{planet.terrain}}
-
-    </p>
-</div>
+        <div class="planet" *ngFor="let planet of planetsData">
+            <div class="front">
+                <h2>{{planet.name}}</h2>
+            </div>
+            <div class="back">
+            <h3>{{planet.name}}</h3>
+            <p>
+                Climate: {{planet.climate}}
+                <br/>
+                Rotation period: {{planet.rotation_period}}
+                <br/>
+                Orbital period: {{planet.orbital_period}}
+                <br/>
+                Diameter: {{planet.diameter}}
+                <br/>
+                Created: {{planet.created}}
+                <br/>
+                Edited: {{planet.edited}}
+                <br/>
+                Films: {{planet.films}}
+                <br/>
+                Gravity: {{planet.gravity}}
+                <br/>
+                Orbital period: {{planet.orbital_period}}
+                <br/>
+                Population: {{planet.population}}
+                <br/>
+                Surface water: {{planet.surface_water}}
+                <br/>
+                Terrain: {{planet.terrain}}      
+            </p>
+        </div>
+    </div>
 </section>
