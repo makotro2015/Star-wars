@@ -1,5 +1,16 @@
 <section class="planet">
-    <div class="description" *ngFor="let key of planetKeys">
-        <p><b>{{ key }}:</b> {{ planetData[key] }}</p>    
+    <div class="img">
+        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1744" alt="Planet image">
+    </div>
+    <div class="description">
+        <p *ngFor="let key of planetKeys">
+            <b>{{ key | uppercase }}:</b> {{ planetData[key] }}
+        </p> 
+        <div *ngIf="peopleData.length > 0">
+        <p *ngFor="let man of peopleData">  
+            {{man.name}}
+        </p> 
+    </div>
     </div>
 </section>
+

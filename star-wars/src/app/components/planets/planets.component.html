@@ -1,5 +1,6 @@
 <section class="planets">
         <div class="planet" *ngFor="let planet of planetsData">
+            <div (click)="goToPage(planet.url)">
             <div class="front">
                 <h2>{{planet.name}}</h2>
             </div>
@@ -18,7 +19,7 @@
                 <br/>
                 Edited: {{planet.edited}}
                 <br/>
-                Films: {{planet.films}}
+                Films: {{p(planet.films)}}
                 <br/>
                 Gravity: {{planet.gravity}}
                 <br/>
@@ -30,6 +31,7 @@
                 <br/>
                 Terrain: {{planet.terrain}}      
             </p>
+        </div>
         </div>
     </div>
 </section>

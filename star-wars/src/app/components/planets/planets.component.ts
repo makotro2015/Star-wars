@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 
 import { HttpService } from 'src/app/services/http.service'
@@ -10,10 +11,10 @@ import { HttpService } from 'src/app/services/http.service'
 })
 export class PlanetsComponent implements OnInit, OnDestroy {
 
-  public planetsData:any = [];
-  public arrayPlanetsKeys = [];
+  public planetsData: any = [];
+  // public arrayPlanetsKeys = [];
 
-  constructor(private http: HttpService) {
+  constructor(private router: Router, private http: HttpService) {
   }
 
   private destroy$: Subject<void> = new Subject();
@@ -24,7 +25,7 @@ export class PlanetsComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroy$))
       .subscribe((resp: any) => {
         this.planetsData = [...resp.results];
-        this.arrayPlanetsKeys = this.getPlanetsKeys(this.planetsData);
+        // this.arrayPlanetsKeys = this.getPlanetsKeys(this.planetsData);
       });
   }
 
@@ -33,13 +34,27 @@ export class PlanetsComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
-  private getPlanetsKeys(arr: Object[]): [] {
-    let arrayKeys: any = [];
-    arr.forEach(obj => {
-      const objKeys: any = [];
-      Object.keys(obj).forEach(key => objKeys.push(key));
-      arrayKeys.push(objKeys);
-    });
-    return arrayKeys;
+  public goToPage(url: any) {
+
+    const arr = url.split('/');
+    const planetId = arr[arr.length - 2]
+    // console.log(url, planetId)
+    this.router.navigate([`planets/${planetId}/`])
   }
+
+  p(arr: any) {
+    // const a = arr.map((film: any) => film.title);
+    // console.log(arr)
+    // return a
+  }
+
+  // private getPlanetsKeys(arr: Object[]): [] {
+  //   let arrayKeys: any = [];
+  //   arr.forEach(obj => {
+  //     const objKeys: any = [];
+  //     Object.keys(obj).forEach(key => objKeys.push(key));
+  //     arrayKeys.push(objKeys);
+  //   });
+  //   return arrayKeys;
+  // }
 }
