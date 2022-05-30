@@ -9,6 +9,6 @@ export class HttpService {
   constructor(private http: HttpClient) { }
 
   public getData(path: string) {
-    return this.http.get(environment.apiUrl + path);
+    return this.http.get(path);
   }
 }

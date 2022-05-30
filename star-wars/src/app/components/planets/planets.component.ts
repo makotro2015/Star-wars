@@ -12,7 +12,6 @@ import { HttpService } from 'src/app/services/http.service'
 export class PlanetsComponent implements OnInit, OnDestroy {
 
   public planetsData: any = [];
-  // public arrayPlanetsKeys = [];
 
   constructor(private router: Router, private http: HttpService) {
   }
@@ -21,11 +20,10 @@ export class PlanetsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.http
-      .getData('planets/')
+      .getData('https://swapi.dev/api/planets/')
       .pipe(takeUntil(this.destroy$))
       .subscribe((resp: any) => {
         this.planetsData = [...resp.results];
-        // this.arrayPlanetsKeys = this.getPlanetsKeys(this.planetsData);
       });
   }
 
@@ -34,27 +32,9 @@ export class PlanetsComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
-  public goToPage(url: any) {
-
+  public goToPlanetPage(url: any) {
     const arr = url.split('/');
     const planetId = arr[arr.length - 2]
-    // console.log(url, planetId)
     this.router.navigate([`planets/${planetId}/`])
   }
-
-  p(arr: any) {
-    // const a = arr.map((film: any) => film.title);
-    // console.log(arr)
-    // return a
-  }
-
-  // private getPlanetsKeys(arr: Object[]): [] {
-  //   let arrayKeys: any = [];
-  //   arr.forEach(obj => {
-  //     const objKeys: any = [];
-  //     Object.keys(obj).forEach(key => objKeys.push(key));
-  //     arrayKeys.push(objKeys);
-  //   });
-  //   return arrayKeys;
-  // }
 }

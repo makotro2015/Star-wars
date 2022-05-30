@@ -11,10 +11,10 @@ import { HttpService } from 'src/app/services/http.service';
 export class PlanetComponent implements OnInit, OnDestroy {
 
   public planetData: any = {};
-  public peopleData: any = {};
-  public speciesData: any = {};
-  public planetKeys = [];
+  public residentsData: any = []
+  public filmsData: any = []
   public planetId: any = null;
+  public residentsUrl: any = null;
 
   constructor(public route: ActivatedRoute, private http: HttpService) {
   }
@@ -26,31 +26,28 @@ export class PlanetComponent implements OnInit, OnDestroy {
       this.planetId = params["id"];
     });
     this.http
-      .getData(`planets/${this.planetId}/`)
+      .getData(`https://swapi.dev/api/planets/${this.planetId}/`)
       .pipe(takeUntil(this.destroy$))
       .subscribe((resp: {}) => {
         this.planetData = { ...resp };
-        this.planetKeys = this.getPlanetKeys(this.planetData);
-      });
-    this.http
-      .getData(`people/`)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((resp: any) => {
-        this.peopleData = [...resp.results];
-        // console.log(this.peopleData)
-        this.peopleData = this.peopleData.filter((obj: any) => {
-          return obj.homeworld === this.planetData.url;
+        this.planetData.residents.forEach((residentUrl: any) => {
+          this.http
+            .getData(residentUrl)
+            .subscribe((resp: any) => {
+              this.residentsData.push({ ...resp });
+            });
         })
-      });
+      })
+
     this.http
-      .getData(`species/`)
+      .getData(`https://swapi.dev/api/films/`)
       .pipe(takeUntil(this.destroy$))
       .subscribe((resp: any) => {
-        this.speciesData = [...resp.results];
-        // console.log(this.peopleData)
-        // console.log(this.peopleData.filter((obj: any) => {
-        //   return obj.homeworld === this.planetData.url;
-        // }))
+        console.log(resp)
+        this.filmsData = [...resp.results];
+        this.filmsData = this.filmsData.filter((obj: any) => {
+          return obj.planets.includes(this.planetData.url);
+        })
       });
   }
 
@@ -59,9 +56,4 @@ export class PlanetComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
-  private getPlanetKeys(obj: {}): [] {
-    const arrayKeys: any = [];
-    Object.keys(obj).forEach(key => arrayKeys.push(key));
-    return arrayKeys;
-  }
 }

@@ -1,14 +1,14 @@
 <section class="planets">
         <div class="planet" *ngFor="let planet of planetsData">
-            <div (click)="goToPage(planet.url)">
+            <div (click)="goToPlanetPage(planet.url)">
             <div class="front">
                 <h2>{{planet.name}}</h2>
             </div>
             <div class="back">
             <h3>{{planet.name}}</h3>
-             <p>
+            <p>
                 Climate: {{planet.climate}}
-               <br/>
+                <br/>
                 Rotation period: {{planet.rotation_period}}
                 <br/>
                 Orbital period: {{planet.orbital_period}}
@@ -19,11 +19,7 @@
                 <br/>
                 Edited: {{planet.edited}}
                 <br/>
-                Films: {{p(planet.films)}}
-                <br/>
                 Gravity: {{planet.gravity}}
-                <br/>
-                Orbital period: {{planet.orbital_period}}
                 <br/>
                 Population: {{planet.population}}
                 <br/>

@@ -2,15 +2,85 @@
     <div class="img">
         <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1744" alt="Planet image">
     </div>
-    <div class="description">
-        <p *ngFor="let key of planetKeys">
+    <div class="planet-info">
+        <table>
+            <caption>{{planetData.name}}</caption>
+            <tr>
+                <th> Climate: </th>
+                <td>{{planetData.climate}}</td>
+            </tr>
+            <tr>
+                <th> Rotation period: </th>
+                <td>{{planetData.rotation_period}}</td>
+            </tr>
+            <tr>
+                <th> Orbital period: </th>
+                <td>{{planetData.orbital_period}}</td>
+            </tr>
+            <tr>
+                <th> Diameter: </th>
+                <td>{{planetData.diameter}}</td>
+            </tr>
+            <tr>
+                <th> Created: </th>
+                <td> {{planetData.created}}</td>
+            </tr>
+            <tr>
+                <th>Edited: </th>
+                <td>{{planetData.edited}}</td>
+            </tr>
+            <tr>
+                <th>Gravity: </th>
+                <td>{{planetData.gravity}}</td>
+            </tr>
+            <tr>
+                <th>Orbital period: </th>
+                <td>{{planetData.orbital_period}}</td>
+            </tr>
+            <tr>
+                <th>Population: </th>
+                <td>{{planetData.population}}</td>
+            </tr>
+            <tr>
+                <th>Surface water: </th>
+                <td>{{planetData.surface_water}}</td>
+            </tr>
+            <tr>
+                <th>Terrain: </th>
+                <td>{{planetData.terrain}}</td>
+            </tr>
+            <tr *ngIf="filmsData.length > 0">
+                <th>Films: </th>
+                <td>
+                <span *ngFor="let film of filmsData">
+                    {{film.title}}. 
+                </span>
+                </td>
+            </tr>
+        </table>
+    </div>
+            <div class="residents-info" *ngIf="residentsData.length > 0">
+                <h3>Residents: </h3>
+                <div class="residents">
+                <div class="resident" *ngFor="let resident of residentsData">
+                    <img src="https://avatars.mds.yandex.net/i?id=877bb935d6c6d13482d3391d56f027b9-5878563-images-thumbs&n=13" alt="Resident photo">
+                    <p><span> Name: </span> {{resident.name}}</p>
+                    <p><span>Birth year: </span> {{resident.birth_year}}</p>
+                        <p><span> Eye color: </span> {{resident.eye_color}}</p>
+                            <p><span> Gender: </span>  {{resident.gender}}</p>
+                                <p><span> Hair color: </span>  {{resident.hair_color}}</p>
+                                    <p><span> Height: </span>  {{resident.height}}</p>
+                                        <p><span> Mass:  </span> {{resident.mass}}</p>
+                                            <p><span> Skin color: </span>  {{resident.skin_color}}</p>
+                                                <p><span> Created: </span> {{resident.created}}</p>
+                                                    <p><span> Edited: </span> {{resident.edited}}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div *ngFor="let key of planetKeys">
             <b>{{ key | uppercase }}:</b> {{ planetData[key] }}
-        </p> 
-        <div *ngIf="peopleData.length > 0">
-        <p *ngFor="let man of peopleData">  
-            {{man.name}}
-        </p> 
-    </div>
-    </div>
+    </div>  -->
+
 </section>
 
