@@ -43,6 +43,26 @@
     .residents-info {
         grid-area: residents;
 
+        .select {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            padding: 3rem;
+            flex-wrap: wrap;
+
+            select {
+                background-color: transparent;
+                color: white;
+                padding: 1rem;
+                border-radius: 10px;
+                border-color: #cad358;
+
+                option {
+                    background-color:black;
+                }
+            }
+        }
+
         img {
             float: left;
             width: 30%;
@@ -61,7 +81,7 @@
             gap: 2rem;
 
             .resident {
-                border: 1px solid white;
+                border: 1px solid #cad358;;
                 border-radius: 10px;
                 padding: 1rem;
                 width: 30%;

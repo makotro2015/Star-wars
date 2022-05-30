@@ -61,8 +61,18 @@
     </div>
             <div class="residents-info" *ngIf="residentsData.length > 0">
                 <h3>Residents: </h3>
+                <div class="select">
+                <label for="resident-gender">Choose a gender:</label>
+                <select name="gender" id="resident-gender" [(ngModel)]="search">
+                    <option value="">--Please choose a gender--</option>
+                    <option value="all">All</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="unknown">unknown or n/a</option>
+                </select>
+            </div>
                 <div class="residents">
-                <div class="resident" *ngFor="let resident of residentsData">
+                <div class="resident" *ngFor="let resident of residentsData | filter:search">
                     <img src="https://avatars.mds.yandex.net/i?id=877bb935d6c6d13482d3391d56f027b9-5878563-images-thumbs&n=13" alt="Resident photo">
                     <p><span> Name: </span> {{resident.name}}</p>
                     <p><span>Birth year: </span> {{resident.birth_year}}</p>

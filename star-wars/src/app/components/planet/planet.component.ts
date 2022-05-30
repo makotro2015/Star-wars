@@ -15,6 +15,7 @@ export class PlanetComponent implements OnInit, OnDestroy {
   public filmsData: any = []
   public planetId: any = null;
   public residentsUrl: any = null;
+  search = 'all';
 
   constructor(public route: ActivatedRoute, private http: HttpService) {
   }
