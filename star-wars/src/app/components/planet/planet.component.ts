@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
+import { Location } from '@angular/common';
 import { HttpService } from 'src/app/services/http.service';
 
 @Component({
@@ -15,9 +16,9 @@ export class PlanetComponent implements OnInit, OnDestroy {
   public filmsData: any = []
   public planetId: any = null;
   public residentsUrl: any = null;
-  search = 'all';
+  public search = 'all';
 
-  constructor(public route: ActivatedRoute, private http: HttpService) {
+  constructor(public route: ActivatedRoute, private http: HttpService, private location: Location) {
   }
 
   private destroy$: Subject<void> = new Subject();
@@ -34,6 +35,7 @@ export class PlanetComponent implements OnInit, OnDestroy {
         this.planetData.residents.forEach((residentUrl: any) => {
           this.http
             .getData(residentUrl)
+            .pipe(takeUntil(this.destroy$))
             .subscribe((resp: any) => {
               this.residentsData.push({ ...resp });
             });
@@ -55,6 +57,10 @@ export class PlanetComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();
+  }
+
+  public goBack() {
+    this.location.back();
   }
 
 }

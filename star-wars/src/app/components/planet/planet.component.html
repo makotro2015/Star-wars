@@ -3,6 +3,7 @@
         <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1744" alt="Planet image">
     </div>
     <div class="planet-info">
+        <a class="exit" (click)="goBack()"><img src="assets/images/exit.png" alt="Выход"></a>
         <table>
             <caption>{{planetData.name}}</caption>
             <tr>
@@ -59,7 +60,7 @@
             </tr>
         </table>
     </div>
-            <div class="residents-info" *ngIf="residentsData.length > 0">
+            <div class="residents-info" *ngIf="residentsData.length > 0;else notFound">
                 <h3>Residents: </h3>
                 <div class="select">
                 <label for="resident-gender">Choose a gender:</label>
@@ -76,21 +77,20 @@
                     <img src="https://avatars.mds.yandex.net/i?id=877bb935d6c6d13482d3391d56f027b9-5878563-images-thumbs&n=13" alt="Resident photo">
                     <p><span> Name: </span> {{resident.name}}</p>
                     <p><span>Birth year: </span> {{resident.birth_year}}</p>
-                        <p><span> Eye color: </span> {{resident.eye_color}}</p>
-                            <p><span> Gender: </span>  {{resident.gender}}</p>
-                                <p><span> Hair color: </span>  {{resident.hair_color}}</p>
-                                    <p><span> Height: </span>  {{resident.height}}</p>
-                                        <p><span> Mass:  </span> {{resident.mass}}</p>
-                                            <p><span> Skin color: </span>  {{resident.skin_color}}</p>
-                                                <p><span> Created: </span> {{resident.created}}</p>
-                                                    <p><span> Edited: </span> {{resident.edited}}</p>
+                    <p><span> Eye color: </span> {{resident.eye_color}}</p>
+                    <p><span> Gender: </span>  {{resident.gender}}</p>
+                    <p><span> Hair color: </span>  {{resident.hair_color}}</p>
+                    <p><span> Height: </span>  {{resident.height}}</p>
+                    <p><span> Mass:  </span> {{resident.mass}}</p>
+                    <p><span> Skin color: </span>  {{resident.skin_color}}</p>
+                    <p><span> Created: </span> {{resident.created}}</p>
+                    <p><span> Edited: </span> {{resident.edited}}</p>
                 </div>
             </div>
         </div>
-
-        <!-- <div *ngFor="let key of planetKeys">
-            <b>{{ key | uppercase }}:</b> {{ planetData[key] }}
-    </div>  -->
+        <ng-template #notFound>
+            <p class="not-found"> Residents not found! </p>
+        </ng-template>
 
 </section>
 

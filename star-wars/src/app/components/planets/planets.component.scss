@@ -1,16 +1,39 @@
 .planets {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 3rem;
     padding: 2rem;
-    min-height: 80vh;
+    margin: 1rem;
+    position: relative;
+
+    .btn {
+        position: absolute;
+        top: -3rem;
+
+        button {
+            padding: 1rem;
+            background-color: transparent;
+            color: white;
+            border: 2px solid #cad358;
+            border-radius: 5px;
+            margin: 0 2rem;
+
+        &.left {
+            margin-left: 0;
+        }
+        }
+    }
 
     .planet {
         position: relative;
-        min-width: 18%;
-        min-height: 45%;
-        max-width: 18%;
+        width: 30rem;
+        height: 30rem;
         margin-bottom: 2rem;
+
+        &:hover {
+            cursor: pointer;
+        }
         
         .front, .back {
             position: absolute;
@@ -36,7 +59,7 @@
                 position: relative;
                 top: 50%;
                 transform: translateY(-50%);
-                font-size: 4.5rem;
+                font-size: 45px;
             }
         }
 
@@ -44,6 +67,10 @@
             padding: 1.5rem;
             overflow: hidden;
             transform: perspective(600px) rotateY(180deg);
+
+            span {
+                color: #cad358;
+            }
         }
 
         h3 {

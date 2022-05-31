@@ -1,4 +1,9 @@
 <section class="planets">
+    <div class="btn" >
+        <button class="left" (click)="back()">Back</button>
+        <span>Page {{currentPage}} of {{countPages}}</span>
+        <button class="right" (click)="next()">Next</button>      
+    </div>
         <div class="planet" *ngFor="let planet of planetsData">
             <div (click)="goToPlanetPage(planet.url)">
             <div class="front">
@@ -7,25 +12,25 @@
             <div class="back">
             <h3>{{planet.name}}</h3>
             <p>
-                Climate: {{planet.climate}}
+                <span>Climate:</span> {{planet.climate}}
                 <br/>
-                Rotation period: {{planet.rotation_period}}
+                <span>Rotation period:</span> {{planet.rotation_period}}
                 <br/>
-                Orbital period: {{planet.orbital_period}}
+                <span>Orbital period:</span> {{planet.orbital_period}}
                 <br/>
-                Diameter: {{planet.diameter}}
+                <span>Diameter:</span> {{planet.diameter}}
                 <br/>
-                Created: {{planet.created}}
+                <span>Created:</span> {{planet.created}}
                 <br/>
-                Edited: {{planet.edited}}
+                <span>Edited:</span> {{planet.edited}}
                 <br/>
-                Gravity: {{planet.gravity}}
+                <span>Gravity:</span> {{planet.gravity}}
                 <br/>
-                Population: {{planet.population}}
+                <span>Population:</span> {{planet.population}}
                 <br/>
-                Surface water: {{planet.surface_water}}
+                <span>Surface water:</span> {{planet.surface_water}}
                 <br/>
-                Terrain: {{planet.terrain}}      
+                <span>Terrain:</span> {{planet.terrain}}      
             </p>
         </div>
         </div>
