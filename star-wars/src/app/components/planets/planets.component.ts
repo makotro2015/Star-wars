@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 
 import { HttpService } from 'src/app/services/http.service'
+import { IPlanet, IResident, IPlanetsResp, IFilm } from 'src/app/interfaces/interfaces';
 
 @Component({
   selector: 'app-planets',
@@ -11,7 +12,7 @@ import { HttpService } from 'src/app/services/http.service'
 })
 export class PlanetsComponent implements OnInit, OnDestroy {
 
-  public planetsData: any = [];
+  public planetsData: IPlanet[] = [];
   public currentPage = 1;
   public countPages = 1;
 
@@ -29,7 +30,7 @@ export class PlanetsComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
-  public goToPlanetPage(url: any) {
+  public goToPlanetPage(url: string) {
     const arr = url.split('/');
     const planetId = arr[arr.length - 2]
     this.router.navigate([`planets/${planetId}/`])
@@ -53,9 +54,9 @@ export class PlanetsComponent implements OnInit, OnDestroy {
     this.http
       .getData(`https://swapi.dev/api/planets/?page=${this.currentPage}`)
       .pipe(takeUntil(this.destroy$))
-      .subscribe((resp: any) => {
-        this.countPages = Math.ceil(resp.count / resp.results.length);
-        this.planetsData = [...resp.results];
+      .subscribe((resp: IPlanetsResp) => {
+        this.countPages = Math.ceil((resp.count as number) / (resp.results as IPlanet[]).length);
+        this.planetsData = [...(resp.results as IPlanet[])];
       });
   }
 }

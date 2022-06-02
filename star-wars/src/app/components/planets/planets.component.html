@@ -5,7 +5,7 @@
         <button class="right" (click)="next()">Next</button>      
     </div>
         <div class="planet" *ngFor="let planet of planetsData">
-            <div (click)="goToPlanetPage(planet.url)">
+            <div *ngIf="planet.url" (click)="goToPlanetPage(planet.url)">
             <div class="front">
                 <h2>{{planet.name}}</h2>
             </div>
